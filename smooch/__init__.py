@@ -20,7 +20,8 @@ class SmoochV1():
             response = urllib2.urlopen(req)
             json_response = response.read()
             return json.loads(json_response)
-        except HTTPError:
+        except HTTPError as e:
+            print e
             return json.loads('{}')
 
     def post_json(self, url, data_obj={}, jwt=None):
@@ -32,7 +33,8 @@ class SmoochV1():
             f.close()
             response_obj = json.loads(val_response)
             return response_obj
-        except HTTPError:
+        except HTTPError as e:
+            print e
             return json.loads('{}')
 
     def put_json(self, data_obj={}, jwt=None):
@@ -41,7 +43,8 @@ class SmoochV1():
             request = urllib2.Request(url, data=data_obj, headers={'Content-Type': 'application/json','Authorization':'Bearer {0}'.format(jwt)})
             request.get_method = lambda: 'PUT'
             url = opener.open(request)
-        except HTTPError:
+        except HTTPError as e:
+            print e
             return json.loads('{}')
 
     def del_json(self, url, jwt=None):
@@ -50,7 +53,8 @@ class SmoochV1():
             request = urllib2.Request(url, headers={'Content-Type': 'application/json', 'Authorization':'Bearer {0}'.format(jwt)})
             request.get_method = lambda: 'DEL'
             url = opener.open(request)
-        except HTTPError:
+        except HTTPError as e:
+            print e
             return json.loads('{}')
 
     def save_webhook(self, subscriber_url, triggers):

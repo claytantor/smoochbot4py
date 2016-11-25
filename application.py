@@ -34,6 +34,7 @@ def init_smooch(flask_app):
     if not found:
         print "creating webhook:{0}".format(flask_app.config["SMOOCH_WEBOOK_ENDPOINT"])
         create_response = smooch_api_instance.save_webhook(flask_app.config["SMOOCH_WEBOOK_ENDPOINT"], ["message:appUser", "postback"])
+        
 	print create_response
 
 def get_smooch_api():

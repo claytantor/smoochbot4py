@@ -14,14 +14,22 @@ docker run -t -d --name smoochbot -v ${CONFIG_DIR}:/mnt/config -p 8079:8079 clay
 ## Configuring The Application
 
 ```
-SMOOCH_KEY_ID="app_5833aea1f2ccf24b002395a1"
-SMOOCH_SECRET="DXi9WjDTyH4Hh_A0IQuwpVc1"
-SMOOCH_APP_TOKEN="33bms6lowss63v438oamjpyuf"
+SMOOCH_KEY_ID="app_5833aea1f2acf24a002195a1"
+SMOOCH_SECRET="DXi9WjDByH4Hh_B1IQuwpVc1"
+SMOOCH_APP_TOKEN="32bms7lowsa63v438oamjpyuf"
 SMOOCHBOT_NAME="smoochbot"
-SMOOCH_WEBOOK_ENDPOINT="https://claydev.dronze.com/smooch/events"
-SMOOCH_CLIENT_ENDPOINT="http://localhost:9090/#/"
+SMOOCH_WEBOOK_ENDPOINT="https://smoochbot.yourdomain.com/smooch/events"
 ROBOT_CONFIG_PATH="/mnt/config/smoochbot.json"
 ```
+
+## Verifying that You Have Webhooks Configured Correctly For Smooch
+
+```
+creating webhook: http://ec2-35-163-72-61.us-west-2.compute.amazonaws.com:8079/smooch/events
+
+{u'webhook': {u'secret': u'84da7soopers3krit6be65c86a553b6c3e7f3a16746051a', u'_id': u'58101ee8891463f000313b61', u'target': u'http://ec2-35-163-72-61.us-west-2.compute.amazonaws.com:8079/smooch/events', u'triggers': [u'message:appUser', u'postback']}}
+```
+
 
 ## Configuring The Robot
 
