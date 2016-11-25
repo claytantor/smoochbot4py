@@ -19,7 +19,7 @@ def get_robot():
 
 def init_smooch(flask_app):
     jwt = smooch.get_jwt(flask_app.config["SMOOCH_KEY_ID"], flask_app.config['SMOOCH_SECRET'])
-    smooch_api_instance = smooch.SmoochV1(jwt=jwt)    
+    smooch_api_instance = smooch.SmoochV1(jwt=jwt)
 
     #test if there are any webhooks for this config
     webhooks_available = smooch_api_instance.list_webhooks()
