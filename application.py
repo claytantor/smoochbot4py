@@ -37,7 +37,6 @@ def init_smooch(flask_app):
 	print create_response
 
 def get_smooch_api():
-    print "setting up smooch webhooks 2"
     smooch_api_instance = getattr(g, '_smooch_api', None)
     if smooch_api_instance is None:
 
@@ -83,13 +82,9 @@ def smooch_events():
     smooch_api = LocalProxy(get_smooch_api)
     robot = LocalProxy(get_robot)
 
-    app_client_id = smooch_api.find_client_id(request.json['appUser']['clients'], app.config["SMOOCH_CLIENT_ENDPOINT"])
-
-    # now talk to the client if the client id is website's
     for message in request.json['messages']:
-        if message['source']['id']==app_client_id:
-            response = robot.process_input(message['text'])
-            smooch_api.postback_message(response, message['authorId'])
+        response = robot.process_input(message['text'])
+        smooch_api.postback_message(response, message['authorId'])
 
     data = {'message':'succeed'}
     resp = Response(json.dumps(data), status=200, mimetype='application/json')
@@ -97,7 +92,7 @@ def smooch_events():
 
 def main(argv):
     init_smooch(app)
-    app.run(host='0.0.0.0', port=int(argv[0]), debug=True)
+    app.run(host='0.0.0.0', port=int(argv[0]), debug=False)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
